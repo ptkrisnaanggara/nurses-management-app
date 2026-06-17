@@ -11,6 +11,8 @@ export interface NurseRepository {
   remove(id: string): Promise<boolean>;
   /** All nurses whose health flags are needed for scheduling (with secrets). */
   findAllWithSensitive(): Promise<Nurse[]>;
+  /** Active nurses of a facility, including health flags, for scheduling. */
+  findByFacilityWithSensitive(facilityId: string): Promise<Nurse[]>;
 }
 
 export const NURSE_REPOSITORY = Symbol('NURSE_REPOSITORY');

@@ -13,8 +13,11 @@ import {
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UserRole } from '@nurses/shared';
 import { Roles } from '../auth/decorators/roles.decorator';
+import { NotFoundException } from '@nestjs/common';
 import { AddAssignmentDto, CreatePeriodDto } from './dto/roster.dto';
 import { RosterService } from './roster.service';
+import { GenerationPublisher } from './generation/generation.publisher';
+import { RosterJobStore } from './generation/roster-job.store';
 
 const EDITORS: UserRole[] = [
   UserRole.ADMIN,
@@ -26,7 +29,11 @@ const EDITORS: UserRole[] = [
 @ApiBearerAuth()
 @Controller('roster')
 export class RosterController {
-  constructor(private readonly roster: RosterService) {}
+  constructor(
+    private readonly roster: RosterService,
+    private readonly generation: GenerationPublisher,
+    private readonly jobs: RosterJobStore,
+  ) {}
 
   @Post('periods')
   @Roles(...EDITORS)
@@ -70,6 +77,22 @@ export class RosterController {
     @Param('assignmentId', ParseUUIDPipe) assignmentId: string,
   ) {
     await this.roster.removeAssignment(assignmentId);
+  }
+
+  @Post('periods/:id/generate')
+  @Roles(...EDITORS)
+  @HttpCode(HttpStatus.ACCEPTED)
+  async generate(@Param('id', ParseUUIDPipe) id: string) {
+    await this.roster.getPeriod(id); // 404 if missing
+    const jobId = await this.generation.enqueue(id);
+    return { jobId, status: 'PENDING' };
+  }
+
+  @Get('jobs/:jobId')
+  async jobStatus(@Param('jobId', ParseUUIDPipe) jobId: string) {
+    const job = await this.jobs.get(jobId);
+    if (!job) throw new NotFoundException(`Job ${jobId} not found`);
+    return job;
   }
 
   @Post('periods/:id/publish')

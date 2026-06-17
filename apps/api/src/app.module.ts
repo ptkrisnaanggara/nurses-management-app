@@ -6,6 +6,7 @@ import configuration from './config/configuration';
 import { envValidationSchema } from './config/env.validation';
 import { DatabaseModule } from './database/database.module';
 import { RedisModule } from './redis/redis.module';
+import { MessagingModule } from './messaging/messaging.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
 import { RolesGuard } from './modules/auth/guards/roles.guard';
@@ -37,6 +38,7 @@ import { RosterModule } from './modules/roster/roster.module';
     }),
     DatabaseModule,
     RedisModule,
+    MessagingModule,
     AuthModule,
     HealthModule,
     FacilitiesModule,

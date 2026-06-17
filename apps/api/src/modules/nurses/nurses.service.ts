@@ -70,4 +70,10 @@ export class NursesService {
       weeklyContractHours: nurse.weeklyContractHours,
     };
   }
+
+  /** Scheduling profiles for every active nurse of a facility. */
+  async profilesForFacility(facilityId: string): Promise<NurseProfile[]> {
+    const nurses = await this.nurses.findByFacilityWithSensitive(facilityId);
+    return nurses.map((n) => this.toRuleProfile(n));
+  }
 }

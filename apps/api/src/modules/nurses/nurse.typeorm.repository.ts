@@ -41,6 +41,16 @@ export class NurseTypeOrmRepository implements NurseRepository {
       .getMany();
   }
 
+  findByFacilityWithSensitive(facilityId: string): Promise<Nurse[]> {
+    return this.repo
+      .createQueryBuilder('nurse')
+      .addSelect(['nurse.isPregnant', 'nurse.isLactating'])
+      .where('nurse.active = true')
+      .andWhere('nurse.facilityId = :facilityId', { facilityId })
+      .orderBy('nurse.fullName', 'ASC')
+      .getMany();
+  }
+
   async update(id: string, data: Partial<Nurse>): Promise<Nurse | null> {
     const existing = await this.repo.findOne({ where: { id } });
     if (!existing) return null;
