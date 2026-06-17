@@ -123,7 +123,7 @@
 | 5.5 | Live validation on add (returns violations + legal refs, blocks HARD) | ✅ |
 | 5.6 | What-if simulation (validateAssignment reused; standalone endpoint) | 🟡 |
 | 5.7 | Publish + lock + audit trail | 🟡 (publish/lock + pre-publish validation gate done; audit log pending Epic 8) |
-| 5.8 | Roster grid UI (generate, edit, validation badges, publish) | ⬜ |
+| 5.8 | Roster grid UI (period select/create, generate via job polling, grid, validate, publish) | 🟡 (read-only grid + full generate/validate/publish flow; inline cell editing pending) |
 
 ### EPIC 6 — Self-Service (Leave, Swap, Schedule View)
 | # | Task | Status |
@@ -182,12 +182,12 @@
 | 2 — Facility/Ward/Shift | 4 / 5 | 🟡 |
 | 3 — Nurses & Credentials | 4 / 6 | 🟡 |
 | 4 — Rule Engine ⭐ | 4 / 7 | 🟡 |
-| 5 — Roster Generation | 4 / 8 | 🟡 |
+| 5 — Roster Generation | 5 / 8 | 🟡 |
 | 6 — Self-Service | 0 / 5 | ⬜ |
 | 7 — Compliance & Fairness | 0 / 4 | ⬜ |
 | 8 — Reporting | 0 / 5 | ⬜ |
 | 9 — Non-Functional | 0 / 6 | ⬜ |
-| **Total** | **27 / 60** | 🟡 |
+| **Total** | **28 / 60** | 🟡 |
 
 ---
 

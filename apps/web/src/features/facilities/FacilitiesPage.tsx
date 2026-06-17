@@ -18,10 +18,15 @@ export function FacilitiesPage() {
         <ul>
           {data?.map((facility) => (
             <li key={facility.id}>
+              {facility.name}
+              {facility.city ? ` — ${facility.city}` : ''}{' '}
               <Link to={`/nurses?facilityId=${facility.id}`}>
-                {facility.name}
+                {t('nurses.title')}
+              </Link>{' '}
+              ·{' '}
+              <Link to={`/wards?facilityId=${facility.id}`}>
+                {t('wards.title')}
               </Link>
-              {facility.city ? ` — ${facility.city}` : ''}
             </li>
           ))}
         </ul>

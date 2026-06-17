@@ -4,6 +4,8 @@ import { LoginPage } from './features/auth/LoginPage';
 import { ProtectedRoute } from './features/auth/ProtectedRoute';
 import { FacilitiesPage } from './features/facilities/FacilitiesPage';
 import { NursesPage } from './features/nurses/NursesPage';
+import { WardsPage } from './features/wards/WardsPage';
+import { RosterPage } from './features/roster/RosterPage';
 
 export const router = createBrowserRouter([
   { path: '/login', element: <LoginPage /> },
@@ -18,6 +20,8 @@ export const router = createBrowserRouter([
       { index: true, element: <FacilitiesPage /> },
       { path: 'facilities', element: <FacilitiesPage /> },
       { path: 'nurses', element: <NursesPage /> },
+      { path: 'wards', element: <WardsPage /> },
+      { path: 'roster', element: <RosterPage /> },
     ],
   },
 ]);
