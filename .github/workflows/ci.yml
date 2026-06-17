@@ -11,9 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Version is read from the root package.json "packageManager" field
+      # (pnpm@9.12.0). Do not also pass a `version` input — pnpm/action-setup@v4
+      # errors if a version is specified in two places.
       - uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       - uses: actions/setup-node@v4
         with:
