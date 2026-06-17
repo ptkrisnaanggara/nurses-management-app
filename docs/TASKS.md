@@ -70,7 +70,7 @@
 | 0.4 | React (Vite + TS) scaffold + routing + i18n + API client setup | ✅ |
 | 0.5 | ORM setup (**TypeORM**) + migration workflow + seed scripts | 🟡 (data-source + migration scripts done; seeds pending) |
 | 0.6 | Shared package: enums/constants reused FE+BE | ✅ |
-| 0.7 | CI (GitHub Actions): typecheck, test, build for api + web | ✅ |
+| 0.7 | CI (GitHub Actions): typecheck, test, build for api + web | ⬜ (removed — no Actions runner in current env; re-add when runners available. Verify locally via `pnpm build && pnpm typecheck && pnpm test`) |
 | 0.8 | ESLint + Prettier + Husky pre-commit + commitlint | ⬜ |
 | 0.9 | Logging (pino), health checks (`@nestjs/terminus`), error filter | ✅ |
 
@@ -177,7 +177,7 @@
 
 | Epic | Done / Total | Status |
 |---|---|---|
-| 0 — Setup | 7 / 9 | 🟡 |
+| 0 — Setup | 6 / 9 | 🟡 |
 | 1 — Auth & RBAC | 0 / 5 | ⬜ |
 | 2 — Facility/Ward/Shift | 0 / 5 | ⬜ |
 | 3 — Nurses & Credentials | 0 / 6 | ⬜ |
@@ -187,7 +187,7 @@
 | 7 — Compliance & Fairness | 0 / 4 | ⬜ |
 | 8 — Reporting | 0 / 5 | ⬜ |
 | 9 — Non-Functional | 0 / 6 | ⬜ |
-| **Total** | **7 / 60** | 🟡 |
+| **Total** | **6 / 60** | 🟡 |
 
 ---
 
