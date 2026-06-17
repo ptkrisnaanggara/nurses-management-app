@@ -116,13 +116,13 @@
 ### EPIC 5 — Roster Generation & Editing
 | # | Task | Status |
 |---|---|---|
-| 5.1 | Roster domain model (period, assignments nurse×date×shift) | ⬜ |
-| 5.2 | Staffing-demand calculators (Douglas per-shift, Gillies, Depkes, WISN) | ⬜ |
+| 5.1 | Roster domain model (period, assignments nurse×date×shift) | ✅ |
+| 5.2 | Staffing-demand calculators (Douglas done; Gillies, Depkes, WISN) | 🟡 (Douglas done) |
 | 5.3 | **Solver**: satisfy HARD constraints, optimize weighted SOFT (CSP/heuristic) | ⬜ |
 | 5.4 | Run generation as RabbitMQ job; progress via WebSocket/polling | ⬜ |
-| 5.5 | Live validation API for manual edits (returns violations + legal refs) | ⬜ |
-| 5.6 | What-if simulation (sick call / swap ripple) | ⬜ |
-| 5.7 | Publish + lock + audit trail | ⬜ |
+| 5.5 | Live validation on add (returns violations + legal refs, blocks HARD) | ✅ |
+| 5.6 | What-if simulation (validateAssignment reused; standalone endpoint) | 🟡 |
+| 5.7 | Publish + lock + audit trail | 🟡 (publish/lock + pre-publish validation gate done; audit log pending Epic 8) |
 | 5.8 | Roster grid UI (generate, edit, validation badges, publish) | ⬜ |
 
 ### EPIC 6 — Self-Service (Leave, Swap, Schedule View)
@@ -182,12 +182,12 @@
 | 2 — Facility/Ward/Shift | 4 / 5 | 🟡 |
 | 3 — Nurses & Credentials | 4 / 6 | 🟡 |
 | 4 — Rule Engine ⭐ | 4 / 7 | 🟡 |
-| 5 — Roster Generation | 0 / 8 | ⬜ |
+| 5 — Roster Generation | 2 / 8 | 🟡 |
 | 6 — Self-Service | 0 / 5 | ⬜ |
 | 7 — Compliance & Fairness | 0 / 4 | ⬜ |
 | 8 — Reporting | 0 / 5 | ⬜ |
 | 9 — Non-Functional | 0 / 6 | ⬜ |
-| **Total** | **23 / 60** | 🟡 |
+| **Total** | **25 / 60** | 🟡 |
 
 ---
 
