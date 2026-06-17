@@ -43,5 +43,8 @@ export const id = {
     compliant: 'Semua aturan terpenuhi.',
     violations: 'pelanggaran aturan wajib',
     publishBlocked: 'Tidak dapat diterbitkan: masih ada pelanggaran aturan wajib.',
+    fairness: 'Keadilan',
+    nightSpread: 'Selisih malam',
+    weekendSpread: 'Selisih akhir pekan',
   },
 } as const;

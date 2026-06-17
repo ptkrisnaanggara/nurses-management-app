@@ -8,6 +8,7 @@ import {
   createPeriod,
   generate,
   getAssignments,
+  getFairness,
   getJob,
   listPeriods,
   publishPeriod,
@@ -75,4 +76,12 @@ export function usePublish(wardId: string | null) {
 
 export function useValidate() {
   return useMutation({ mutationFn: validatePeriod });
+}
+
+export function useFairness(periodId: string | null) {
+  return useQuery({
+    queryKey: ['roster-fairness', periodId],
+    queryFn: () => getFairness(periodId as string),
+    enabled: false, // fetched on demand via refetch()
+  });
 }

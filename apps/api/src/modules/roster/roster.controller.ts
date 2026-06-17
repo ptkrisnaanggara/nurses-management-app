@@ -18,6 +18,7 @@ import { AddAssignmentDto, CreatePeriodDto } from './dto/roster.dto';
 import { RosterService } from './roster.service';
 import { GenerationPublisher } from './generation/generation.publisher';
 import { RosterJobStore } from './generation/roster-job.store';
+import { AnalyticsService } from './analytics/analytics.service';
 
 const EDITORS: UserRole[] = [
   UserRole.ADMIN,
@@ -33,6 +34,7 @@ export class RosterController {
     private readonly roster: RosterService,
     private readonly generation: GenerationPublisher,
     private readonly jobs: RosterJobStore,
+    private readonly analytics: AnalyticsService,
   ) {}
 
   @Post('periods')
@@ -59,6 +61,16 @@ export class RosterController {
   @Get('periods/:id/validate')
   validate(@Param('id', ParseUUIDPipe) id: string) {
     return this.roster.validatePeriod(id);
+  }
+
+  @Get('periods/:id/fairness')
+  fairness(@Param('id', ParseUUIDPipe) id: string) {
+    return this.analytics.fairness(id);
+  }
+
+  @Get('periods/:id/night-compliance')
+  nightCompliance(@Param('id', ParseUUIDPipe) id: string) {
+    return this.analytics.nightCompliance(id);
   }
 
   @Post('periods/:id/assignments')

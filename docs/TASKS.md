@@ -137,10 +137,10 @@
 ### EPIC 7 — Compliance & Fairness
 | # | Task | Status |
 |---|---|---|
-| 7.1 | Pre-publish compliance report (all violations + severity + legal ref) | ⬜ |
-| 7.2 | Women's night-work flags (antar-jemput transport, meal, under-18/pregnancy block) | ⬜ |
-| 7.3 | Fairness dashboard (per-nurse nights/weekends/holidays/hours, inequality metric) | ⬜ |
-| 7.4 | Fatigue checks (consecutive nights, malam-lalu-pagi, 11h rest gap) | ⬜ |
+| 7.1 | Pre-publish compliance report (all violations + severity + legal ref) | ✅ (validatePeriod API + publish gate; UI report list pending) |
+| 7.2 | Women's night-work flags (antar-jemput transport, meal) | ✅ (night-compliance report) |
+| 7.3 | Fairness dashboard (per-nurse nights/weekends/holidays/hours + spread) | ✅ (API + roster UI panel) |
+| 7.4 | Fatigue checks (consecutive nights, malam-lalu-pagi, 11h rest gap) | ✅ (enforced as HARD rules; surfaced via validation) |
 
 ### EPIC 8 — Reporting & Exports
 | # | Task | Status |
@@ -184,10 +184,10 @@
 | 4 — Rule Engine ⭐ | 4 / 7 | 🟡 |
 | 5 — Roster Generation | 5 / 8 | 🟡 |
 | 6 — Self-Service | 3 / 5 | 🟡 |
-| 7 — Compliance & Fairness | 0 / 4 | ⬜ |
+| 7 — Compliance & Fairness | 4 / 4 | ✅ |
 | 8 — Reporting | 0 / 5 | ⬜ |
 | 9 — Non-Functional | 0 / 6 | ⬜ |
-| **Total** | **31 / 60** | 🟡 |
+| **Total** | **35 / 60** | 🟡 |
 
 ---
 

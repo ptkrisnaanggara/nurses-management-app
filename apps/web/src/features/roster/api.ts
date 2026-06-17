@@ -88,6 +88,39 @@ export async function validatePeriod(
   return data;
 }
 
+export interface FairnessReport {
+  perNurse: Record<
+    string,
+    { total: number; nights: number; weekends: number; holidays: number; hours: number }
+  >;
+  summary: {
+    nights: { min: number; max: number; spread: number };
+    weekends: { min: number; max: number; spread: number };
+    hours: { min: number; max: number; spread: number };
+  };
+}
+
+export interface NightComplianceReport {
+  femaleNightShifts: number;
+  flags: { nurseId: string; date: string }[];
+}
+
+export async function getFairness(periodId: string): Promise<FairnessReport> {
+  const { data } = await apiClient.get<FairnessReport>(
+    `/roster/periods/${periodId}/fairness`,
+  );
+  return data;
+}
+
+export async function getNightCompliance(
+  periodId: string,
+): Promise<NightComplianceReport> {
+  const { data } = await apiClient.get<NightComplianceReport>(
+    `/roster/periods/${periodId}/night-compliance`,
+  );
+  return data;
+}
+
 export async function publishPeriod(periodId: string): Promise<RosterPeriod> {
   const { data } = await apiClient.post<RosterPeriod>(
     `/roster/periods/${periodId}/publish`,

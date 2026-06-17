@@ -4,13 +4,12 @@ import {
   Logger,
   NotFoundException,
 } from '@nestjs/common';
-import { DEFAULT_SHIFT_HOURS, ShiftType } from '@nurses/shared';
+import { ShiftType } from '@nurses/shared';
 import { NursesService } from '../../nurses/nurses.service';
 import { ShiftsService } from '../../shifts/shifts.service';
 import { WardsService } from '../../wards/wards.service';
 import { RuleResolverService } from '../../rules/rule-resolver.service';
 import { ROSTER_REPOSITORY, RosterRepository } from '../roster.repository';
-import { ShiftHoursMap } from '../schedule-context.builder';
 import { RosterSolver, SolveResult } from './roster-solver';
 
 /** Orchestrates a full roster generation for one period (runs in the worker). */
@@ -33,7 +32,7 @@ export class GenerationService {
 
     const ward = await this.wards.findOne(period.wardId);
     const nurses = await this.nurses.profilesForFacility(period.facilityId);
-    const hours = await this.shiftHours(period.facilityId);
+    const hours = await this.shifts.hoursMap(period.facilityId);
     const rules = await this.resolver.resolve({
       facilityId: period.facilityId,
       wardId: period.wardId,
@@ -65,18 +64,6 @@ export class GenerationService {
       `Generated ${result.assignments.length} assignments for period ${periodId} (${result.unfilled.length} unfilled slots)`,
     );
     return result;
-  }
-
-  private async shiftHours(facilityId: string): Promise<ShiftHoursMap> {
-    const map: ShiftHoursMap = {
-      [ShiftType.PAGI]: DEFAULT_SHIFT_HOURS[ShiftType.PAGI],
-      [ShiftType.SIANG]: DEFAULT_SHIFT_HOURS[ShiftType.SIANG],
-      [ShiftType.MALAM]: DEFAULT_SHIFT_HOURS[ShiftType.MALAM],
-    };
-    for (const def of await this.shifts.findByFacility(facilityId)) {
-      if (def.active) map[def.shiftType] = { start: def.startTime, end: def.endTime };
-    }
-    return map;
   }
 }
 

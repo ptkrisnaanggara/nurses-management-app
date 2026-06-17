@@ -7,6 +7,7 @@ import { RosterGrid } from './RosterGrid';
 import {
   useAssignments,
   useCreatePeriod,
+  useFairness,
   useGenerationJob,
   usePeriods,
   usePublish,
@@ -35,6 +36,11 @@ export function RosterPage() {
   const publish = usePublish(wardId);
   const validate = useValidate();
   const [validation, setValidation] = useState<PeriodValidation | null>(null);
+  const fairness = useFairness(period?.id ?? null);
+  const nameById = useMemo(
+    () => new Map((nurses.data ?? []).map((n) => [n.id, n.fullName])),
+    [nurses.data],
+  );
 
   if (!facilityId || !wardId) return <p>{t('roster.selectWard')}</p>;
 
@@ -102,6 +108,9 @@ export function RosterPage() {
             >
               {t('roster.publish')}
             </button>
+            <button type="button" onClick={() => fairness.refetch()}>
+              {t('roster.fairness')}
+            </button>
           </div>
 
           {job.data && (
@@ -120,6 +129,40 @@ export function RosterPage() {
                 ? t('roster.compliant')
                 : `${validation.hardViolations} ${t('roster.violations')}`}
             </p>
+          )}
+
+          {fairness.data && (
+            <div>
+              <h2>{t('roster.fairness')}</h2>
+              <p>
+                {t('roster.nightSpread')}: {fairness.data.summary.nights.spread} ·{' '}
+                {t('roster.weekendSpread')}: {fairness.data.summary.weekends.spread}
+              </p>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Perawat</th>
+                    <th>Total</th>
+                    <th>Malam</th>
+                    <th>Akhir pekan</th>
+                    <th>Libur nasional</th>
+                    <th>Jam</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {Object.entries(fairness.data.perNurse).map(([id, s]) => (
+                    <tr key={id}>
+                      <td>{nameById.get(id) ?? id}</td>
+                      <td>{s.total}</td>
+                      <td>{s.nights}</td>
+                      <td>{s.weekends}</td>
+                      <td>{s.holidays}</td>
+                      <td>{s.hours}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
 
           {nurses.data && assignments.data && (

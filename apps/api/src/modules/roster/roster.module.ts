@@ -4,6 +4,8 @@ import { NursesModule } from '../nurses/nurses.module';
 import { RulesModule } from '../rules/rules.module';
 import { ShiftsModule } from '../shifts/shifts.module';
 import { WardsModule } from '../wards/wards.module';
+import { HolidaysModule } from '../holidays/holidays.module';
+import { AnalyticsService } from './analytics/analytics.service';
 import { Assignment } from './entities/assignment.entity';
 import { RosterPeriod } from './entities/roster-period.entity';
 import { SwapRequest } from './swap/entities/swap-request.entity';
@@ -26,11 +28,13 @@ import { RosterJobStore } from './generation/roster-job.store';
     ShiftsModule,
     WardsModule,
     RulesModule,
+    HolidaysModule,
   ],
   controllers: [RosterController, SwapController],
   providers: [
     RosterService,
     SwapService,
+    AnalyticsService,
     RosterSolver,
     GenerationService,
     GenerationPublisher,

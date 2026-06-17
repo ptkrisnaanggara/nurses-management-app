@@ -33,6 +33,24 @@ export class ShiftsService {
     return this.repo.save(existing);
   }
 
+  /**
+   * Facility shift hours keyed by shift type, with the national defaults
+   * (PRD §3.7) overlaid by any active facility-specific definitions.
+   */
+  async hoursMap(
+    facilityId: string,
+  ): Promise<Partial<Record<ShiftType, { start: string; end: string }>>> {
+    const map: Partial<Record<ShiftType, { start: string; end: string }>> = {
+      [ShiftType.PAGI]: DEFAULT_SHIFT_HOURS[ShiftType.PAGI],
+      [ShiftType.SIANG]: DEFAULT_SHIFT_HOURS[ShiftType.SIANG],
+      [ShiftType.MALAM]: DEFAULT_SHIFT_HOURS[ShiftType.MALAM],
+    };
+    for (const def of await this.findByFacility(facilityId)) {
+      if (def.active) map[def.shiftType] = { start: def.startTime, end: def.endTime };
+    }
+    return map;
+  }
+
   /** Seed the default 3-shift hours (Pagi/Siang/Malam) for a facility. */
   async seedDefaults(facilityId: string): Promise<ShiftDefinition[]> {
     const types = [ShiftType.PAGI, ShiftType.SIANG, ShiftType.MALAM] as const;

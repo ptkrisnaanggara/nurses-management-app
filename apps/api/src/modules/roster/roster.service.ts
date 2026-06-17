@@ -4,7 +4,7 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { DEFAULT_SHIFT_HOURS, RosterStatus, ShiftType } from '@nurses/shared';
+import { RosterStatus, ShiftType } from '@nurses/shared';
 import { NursesService } from '../nurses/nurses.service';
 import { ShiftsService } from '../shifts/shifts.service';
 import { RuleEngineService } from '../rules/rule-engine.service';
@@ -13,10 +13,7 @@ import { EvaluationResult } from '../rules/evaluation/types';
 import { Assignment } from './entities/assignment.entity';
 import { RosterPeriod } from './entities/roster-period.entity';
 import { ROSTER_REPOSITORY, RosterRepository } from './roster.repository';
-import {
-  buildScheduleContext,
-  ShiftHoursMap,
-} from './schedule-context.builder';
+import { buildScheduleContext } from './schedule-context.builder';
 
 export interface PeriodValidation {
   allowed: boolean;
@@ -89,7 +86,7 @@ export class RosterService {
   ): Promise<EvaluationResult> {
     const nurse = await this.nurses.findOne(proposed.nurseId, true);
     const profile = this.nurses.toRuleProfile(nurse);
-    const hours = await this.shiftHours(period.facilityId);
+    const hours = await this.shifts.hoursMap(period.facilityId);
     const nurseAssignments = await this.repo.findAssignmentsByNurse(
       period.id,
       proposed.nurseId,
@@ -156,20 +153,5 @@ export class RosterService {
     });
     if (!updated) throw new NotFoundException(`Roster period ${periodId} not found`);
     return updated;
-  }
-
-  /** Facility shift hours, falling back to the national defaults. */
-  private async shiftHours(facilityId: string): Promise<ShiftHoursMap> {
-    const map: ShiftHoursMap = {
-      [ShiftType.PAGI]: DEFAULT_SHIFT_HOURS[ShiftType.PAGI],
-      [ShiftType.SIANG]: DEFAULT_SHIFT_HOURS[ShiftType.SIANG],
-      [ShiftType.MALAM]: DEFAULT_SHIFT_HOURS[ShiftType.MALAM],
-    };
-    for (const def of await this.shifts.findByFacility(facilityId)) {
-      if (def.active) {
-        map[def.shiftType] = { start: def.startTime, end: def.endTime };
-      }
-    }
-    return map;
   }
 }
