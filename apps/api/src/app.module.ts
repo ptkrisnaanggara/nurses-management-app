@@ -11,6 +11,7 @@ import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
 import { RolesGuard } from './modules/auth/guards/roles.guard';
 import { HealthModule } from './modules/health/health.module';
 import { FacilitiesModule } from './modules/facilities/facilities.module';
+import { RulesModule } from './modules/rules/rules.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { FacilitiesModule } from './modules/facilities/facilities.module';
     AuthModule,
     HealthModule,
     FacilitiesModule,
+    RulesModule,
   ],
   providers: [
     // Auth is enforced globally; routes opt out with @Public().

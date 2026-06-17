@@ -105,13 +105,13 @@
 ### EPIC 4 — Flexible Rule Engine ⭐ (core differentiator)
 | # | Task | Status |
 |---|---|---|
-| 4.1 | `Rule` model (scope, type HARD/SOFT, weight, params, legalRef, effective dates) | ⬜ |
-| 4.2 | Scope-precedence resolver (Individual→Role→Class→Ward→Facility→Global) | ⬜ |
-| 4.3 | `RuleEvaluator` strategy interface + per-category evaluators (hours, rest, overtime, night-work, gender, competency, staffing, leave, fairness, fatigue) | ⬜ |
-| 4.4 | Versioned **rule profiles** (Indonesia RS Umum, Puskesmas, ASN, Kontrak) + seed data | ⬜ |
-| 4.5 | Rule cache in Redis (invalidate on edit) | ⬜ |
+| 4.1 | `Rule` model (scope, type HARD/SOFT, weight, params, legalRef, effective dates, overridable) | ✅ |
+| 4.2 | Scope-precedence resolver (Individual→Role→Class→Ward→Facility→Global) + locked legal floors | ✅ |
+| 4.3 | `RuleEvaluator` strategy interface + evaluators (max-hours, min-rest, malam-lalu-pagi, max-consecutive-nights, under-18 night, pregnant night) | 🟡 (6 evaluators; overtime/competency/staffing/leave/fairness SOFT rules remain) |
+| 4.4 | Versioned **rule profiles** (Indonesia RS Umum seeded; Puskesmas/ASN/Kontrak remain) | 🟡 |
+| 4.5 | Rule cache in Redis (invalidate on edit) | ✅ |
 | 4.6 | Rule admin UI (edit params, enable/disable, view legal reference) | ⬜ |
-| 4.7 | Unit tests covering each statutory rule from PRD §3 | ⬜ |
+| 4.7 | Unit tests covering statutory rules from PRD §3 | ✅ (engine + resolver, 8 tests) |
 
 ### EPIC 5 — Roster Generation & Editing
 | # | Task | Status |
@@ -181,13 +181,13 @@
 | 1 — Auth & RBAC | 5 / 5 | ✅ |
 | 2 — Facility/Ward/Shift | 0 / 5 | ⬜ |
 | 3 — Nurses & Credentials | 0 / 6 | ⬜ |
-| 4 — Rule Engine ⭐ | 0 / 7 | ⬜ |
+| 4 — Rule Engine ⭐ | 4 / 7 | 🟡 |
 | 5 — Roster Generation | 0 / 8 | ⬜ |
 | 6 — Self-Service | 0 / 5 | ⬜ |
 | 7 — Compliance & Fairness | 0 / 4 | ⬜ |
 | 8 — Reporting | 0 / 5 | ⬜ |
 | 9 — Non-Functional | 0 / 6 | ⬜ |
-| **Total** | **11 / 60** | 🟡 |
+| **Total** | **15 / 60** | 🟡 |
 
 ---
 
