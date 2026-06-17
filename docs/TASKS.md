@@ -20,9 +20,9 @@
 | Auth | JWT (access + refresh) | Role-based access control (RBAC) |
 | Infra | Docker Compose (dev), CI via GitHub Actions | |
 
-### Architectural decisions (to confirm)
-- [ ] **ORM choice:** Prisma (DX, type-safety) vs TypeORM (NestJS-native). *Recommendation: Prisma.*
-- [ ] **Monorepo tool:** Nx vs npm/pnpm workspaces. *Recommendation: pnpm workspaces, simple.*
+### Architectural decisions
+- [x] **ORM choice:** **TypeORM** (NestJS-native, `@nestjs/typeorm`). ✅ decided
+- [x] **Monorepo tool:** **pnpm workspaces**. ✅ decided
 - [ ] **Roster generation engine:** in-process solver vs dedicated worker (RabbitMQ consumer). *Recommendation: worker, it's CPU-heavy.*
 
 ---
@@ -64,15 +64,15 @@
 ### EPIC 0 — Project Setup & Foundations
 | # | Task | Status |
 |---|---|---|
-| 0.1 | Init monorepo (pnpm workspaces): `apps/api`, `apps/web`, `packages/shared` | ⬜ |
-| 0.2 | Docker Compose: Postgres, Redis, RabbitMQ for local dev | ⬜ |
-| 0.3 | NestJS app scaffold + config module + validation pipe + Swagger | ⬜ |
-| 0.4 | React (Vite + TS) scaffold + routing + i18n + API client setup | ⬜ |
-| 0.5 | ORM setup (Prisma) + migration workflow + seed scripts | ⬜ |
-| 0.6 | Shared package: types/enums/DTO schemas (zod) reused FE+BE | ⬜ |
-| 0.7 | CI (GitHub Actions): lint, typecheck, test, build for api + web | ⬜ |
+| 0.1 | Init monorepo (pnpm workspaces): `apps/api`, `apps/web`, `packages/shared` | ✅ |
+| 0.2 | Docker Compose: Postgres, Redis, RabbitMQ for local dev | ✅ |
+| 0.3 | NestJS app scaffold + config module + validation pipe + Swagger | ✅ |
+| 0.4 | React (Vite + TS) scaffold + routing + i18n + API client setup | ✅ |
+| 0.5 | ORM setup (**TypeORM**) + migration workflow + seed scripts | 🟡 (data-source + migration scripts done; seeds pending) |
+| 0.6 | Shared package: enums/constants reused FE+BE | ✅ |
+| 0.7 | CI (GitHub Actions): typecheck, test, build for api + web | ✅ |
 | 0.8 | ESLint + Prettier + Husky pre-commit + commitlint | ⬜ |
-| 0.9 | Logging (pino), health checks (`@nestjs/terminus`), error filter | ⬜ |
+| 0.9 | Logging (pino), health checks (`@nestjs/terminus`), error filter | ✅ |
 
 ### EPIC 1 — Auth & RBAC
 | # | Task | Status |
@@ -177,7 +177,7 @@
 
 | Epic | Done / Total | Status |
 |---|---|---|
-| 0 — Setup | 0 / 9 | ⬜ |
+| 0 — Setup | 7 / 9 | 🟡 |
 | 1 — Auth & RBAC | 0 / 5 | ⬜ |
 | 2 — Facility/Ward/Shift | 0 / 5 | ⬜ |
 | 3 — Nurses & Credentials | 0 / 6 | ⬜ |
@@ -187,7 +187,7 @@
 | 7 — Compliance & Fairness | 0 / 4 | ⬜ |
 | 8 — Reporting | 0 / 5 | ⬜ |
 | 9 — Non-Functional | 0 / 6 | ⬜ |
-| **Total** | **0 / 60** | ⬜ |
+| **Total** | **7 / 60** | 🟡 |
 
 ---
 
@@ -195,8 +195,8 @@
 | Date | Decision | Rationale |
 |---|---|---|
 | 2026-06-16 | Stack: NestJS + React + Postgres + Redis + RabbitMQ | Per product direction |
-| _pending_ | ORM (Prisma vs TypeORM) | See §1 |
-| _pending_ | Monorepo tool (pnpm vs Nx) | See §1 |
+| 2026-06-17 | ORM: **TypeORM** | User decision |
+| 2026-06-17 | Monorepo: **pnpm workspaces** | User decision |
 
 ## 7. Open Questions (carried from PRD §10)
 1. SIP workplace cap under PP 28/2024 (still 2?) — verify before hard-coding.

@@ -1,0 +1,20 @@
+{
+  "name": "nurses-management-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Nurse shift management app for Indonesia",
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=9"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "dev": "pnpm -r --parallel dev",
+    "lint": "pnpm -r lint",
+    "test": "pnpm -r test",
+    "typecheck": "pnpm -r typecheck",
+    "infra:up": "docker compose up -d",
+    "infra:down": "docker compose down"
+  },
+  "packageManager": "pnpm@9.12.0"
+}
