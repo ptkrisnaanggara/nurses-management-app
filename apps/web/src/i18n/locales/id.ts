@@ -17,4 +17,9 @@ export const id = {
     title: 'Fasilitas',
     empty: 'Belum ada fasilitas.',
   },
+  nurses: {
+    title: 'Perawat',
+    empty: 'Belum ada perawat di fasilitas ini.',
+    selectFacility: 'Pilih fasilitas terlebih dahulu.',
+  },
 } as const;

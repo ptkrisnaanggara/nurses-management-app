@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { useFacilities } from './useFacilities';
 
 export function FacilitiesPage() {
@@ -17,7 +18,9 @@ export function FacilitiesPage() {
         <ul>
           {data?.map((facility) => (
             <li key={facility.id}>
-              {facility.name}
+              <Link to={`/nurses?facilityId=${facility.id}`}>
+                {facility.name}
+              </Link>
               {facility.city ? ` — ${facility.city}` : ''}
             </li>
           ))}

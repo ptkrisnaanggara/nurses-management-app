@@ -12,6 +12,7 @@ import { RolesGuard } from './modules/auth/guards/roles.guard';
 import { HealthModule } from './modules/health/health.module';
 import { FacilitiesModule } from './modules/facilities/facilities.module';
 import { RulesModule } from './modules/rules/rules.module';
+import { NursesModule } from './modules/nurses/nurses.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { RulesModule } from './modules/rules/rules.module';
     HealthModule,
     FacilitiesModule,
     RulesModule,
+    NursesModule,
   ],
   providers: [
     // Auth is enforced globally; routes opt out with @Public().

@@ -95,12 +95,12 @@
 ### EPIC 3 — Nurse Profiles & Credentials
 | # | Task | Status |
 |---|---|---|
-| 3.1 | Nurse entity: employment class (PNS/kontrak), role, gender, DOB, contract hours | ⬜ |
-| 3.2 | Credentials: STR (lifetime), SIP per workplace + expiry, SKP balance, **PK level I–V** | ⬜ |
-| 3.3 | Privacy-controlled health flags (pregnancy/lactation) — restricted access | ⬜ |
+| 3.1 | Nurse entity: employment class (PNS/kontrak), gender, DOB, contract hours | ✅ |
+| 3.2 | Credentials: STR (lifetime), SIP per workplace + expiry, SKP balance, **PK level I–V** | ✅ |
+| 3.3 | Privacy-controlled health flags (pregnancy/lactation) — role-restricted read & write | ✅ |
 | 3.4 | Leave balances per type per employment class | ⬜ |
-| 3.5 | Compliance alerts (SIP expiry, SKP shortfall) — queued reminders | ⬜ |
-| 3.6 | Nurse profile UI (manager view + self view) | ⬜ |
+| 3.5 | Compliance alerts (SIP expiry/missing, SKP shortfall) — pure checker + endpoint | 🟡 (logic + endpoint done; queued reminders pending Epic 6) |
+| 3.6 | Nurse profile UI (list + compliance badges, privacy-aware) | ✅ |
 
 ### EPIC 4 — Flexible Rule Engine ⭐ (core differentiator)
 | # | Task | Status |
@@ -180,14 +180,14 @@
 | 0 — Setup | 6 / 9 | 🟡 |
 | 1 — Auth & RBAC | 5 / 5 | ✅ |
 | 2 — Facility/Ward/Shift | 0 / 5 | ⬜ |
-| 3 — Nurses & Credentials | 0 / 6 | ⬜ |
+| 3 — Nurses & Credentials | 4 / 6 | 🟡 |
 | 4 — Rule Engine ⭐ | 4 / 7 | 🟡 |
 | 5 — Roster Generation | 0 / 8 | ⬜ |
 | 6 — Self-Service | 0 / 5 | ⬜ |
 | 7 — Compliance & Fairness | 0 / 4 | ⬜ |
 | 8 — Reporting | 0 / 5 | ⬜ |
 | 9 — Non-Functional | 0 / 6 | ⬜ |
-| **Total** | **15 / 60** | 🟡 |
+| **Total** | **19 / 60** | 🟡 |
 
 ---
 
