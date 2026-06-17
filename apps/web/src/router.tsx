@@ -1,0 +1,27 @@
+import { createBrowserRouter } from 'react-router-dom';
+import { App } from './App';
+import { LoginPage } from './features/auth/LoginPage';
+import { ProtectedRoute } from './features/auth/ProtectedRoute';
+import { FacilitiesPage } from './features/facilities/FacilitiesPage';
+import { NursesPage } from './features/nurses/NursesPage';
+import { WardsPage } from './features/wards/WardsPage';
+import { RosterPage } from './features/roster/RosterPage';
+
+export const router = createBrowserRouter([
+  { path: '/login', element: <LoginPage /> },
+  {
+    path: '/',
+    element: (
+      <ProtectedRoute>
+        <App />
+      </ProtectedRoute>
+    ),
+    children: [
+      { index: true, element: <FacilitiesPage /> },
+      { path: 'facilities', element: <FacilitiesPage /> },
+      { path: 'nurses', element: <NursesPage /> },
+      { path: 'wards', element: <WardsPage /> },
+      { path: 'roster', element: <RosterPage /> },
+    ],
+  },
+]);
