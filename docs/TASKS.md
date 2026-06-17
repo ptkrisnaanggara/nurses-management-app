@@ -68,7 +68,7 @@
 | 0.2 | Docker Compose: Postgres, Redis, RabbitMQ for local dev | ✅ |
 | 0.3 | NestJS app scaffold + config module + validation pipe + Swagger | ✅ |
 | 0.4 | React (Vite + TS) scaffold + routing + i18n + API client setup | ✅ |
-| 0.5 | ORM setup (**TypeORM**) + migration workflow + seed scripts | 🟡 (data-source + migration scripts done; seeds pending) |
+| 0.5 | ORM setup (**TypeORM**) + migration workflow + seed scripts | 🟡 (data-source, migration scripts, admin seed done; migration files generated once a DB is available) |
 | 0.6 | Shared package: enums/constants reused FE+BE | ✅ |
 | 0.7 | CI (GitHub Actions): typecheck, test, build for api + web | ⬜ (removed — no Actions runner in current env; re-add when runners available. Verify locally via `pnpm build && pnpm typecheck && pnpm test`) |
 | 0.8 | ESLint + Prettier + Husky pre-commit + commitlint | ⬜ |
@@ -77,11 +77,11 @@
 ### EPIC 1 — Auth & RBAC
 | # | Task | Status |
 |---|---|---|
-| 1.1 | User entity, password hashing (argon2), login/refresh (JWT) | ⬜ |
-| 1.2 | Roles: Admin, Nursing Manager, Head Nurse, Staff Nurse, HRD | ⬜ |
-| 1.3 | RBAC guards + decorators (`@Roles`), resource-scoped authorization | ⬜ |
-| 1.4 | Redis-backed refresh-token store / session revocation | ⬜ |
-| 1.5 | React auth flow: login, token refresh, protected routes, role gating | ⬜ |
+| 1.1 | User entity, password hashing (argon2), login/refresh (JWT, rotation) | ✅ |
+| 1.2 | Roles: Admin, Nursing Manager, Head Nurse, Staff Nurse, HRD | ✅ |
+| 1.3 | RBAC guards + decorators (`@Roles`, `@Public`, `@CurrentUser`), global guards | ✅ |
+| 1.4 | Redis-backed refresh-token store + rotation/revocation | ✅ |
+| 1.5 | React auth flow: login, token refresh interceptor, protected routes | ✅ |
 
 ### EPIC 2 — Facility, Ward & Shift Configuration
 | # | Task | Status |
@@ -178,7 +178,7 @@
 | Epic | Done / Total | Status |
 |---|---|---|
 | 0 — Setup | 6 / 9 | 🟡 |
-| 1 — Auth & RBAC | 0 / 5 | ⬜ |
+| 1 — Auth & RBAC | 5 / 5 | ✅ |
 | 2 — Facility/Ward/Shift | 0 / 5 | ⬜ |
 | 3 — Nurses & Credentials | 0 / 6 | ⬜ |
 | 4 — Rule Engine ⭐ | 0 / 7 | ⬜ |
@@ -187,7 +187,7 @@
 | 7 — Compliance & Fairness | 0 / 4 | ⬜ |
 | 8 — Reporting | 0 / 5 | ⬜ |
 | 9 — Non-Functional | 0 / 6 | ⬜ |
-| **Total** | **6 / 60** | 🟡 |
+| **Total** | **11 / 60** | 🟡 |
 
 ---
 
