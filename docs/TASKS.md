@@ -86,10 +86,10 @@
 ### EPIC 2 — Facility, Ward & Shift Configuration
 | # | Task | Status |
 |---|---|---|
-| 2.1 | Facility CRUD (work-week scheme 6/5-day, time zone WIB/WITA/WIT) | ⬜ |
-| 2.2 | Ward/unit CRUD (type: ICU/IGD/rawat inap, staffing demand config) | ⬜ |
-| 2.3 | Shift definitions (Pagi/Siang/Malam, custom hours, breaks) | ⬜ |
-| 2.4 | Holiday calendar import (SKB 3 Menteri / cuti bersama yearly) | ⬜ |
+| 2.1 | Facility CRUD (work-week scheme 6/5-day, time zone WIB/WITA/WIT) | ✅ (Epic 0) |
+| 2.2 | Ward/unit CRUD (type, shift demand) + Douglas staffing calculator | ✅ |
+| 2.3 | Shift definitions (Pagi/Siang/Malam, custom hours, breaks) + seed defaults | ✅ |
+| 2.4 | Holiday calendar import (SKB 3 Menteri / cuti bersama yearly) | ✅ |
 | 2.5 | Admin UI for the above | ⬜ |
 
 ### EPIC 3 — Nurse Profiles & Credentials
@@ -179,7 +179,7 @@
 |---|---|---|
 | 0 — Setup | 6 / 9 | 🟡 |
 | 1 — Auth & RBAC | 5 / 5 | ✅ |
-| 2 — Facility/Ward/Shift | 0 / 5 | ⬜ |
+| 2 — Facility/Ward/Shift | 4 / 5 | 🟡 |
 | 3 — Nurses & Credentials | 4 / 6 | 🟡 |
 | 4 — Rule Engine ⭐ | 4 / 7 | 🟡 |
 | 5 — Roster Generation | 0 / 8 | ⬜ |
@@ -187,7 +187,7 @@
 | 7 — Compliance & Fairness | 0 / 4 | ⬜ |
 | 8 — Reporting | 0 / 5 | ⬜ |
 | 9 — Non-Functional | 0 / 6 | ⬜ |
-| **Total** | **19 / 60** | 🟡 |
+| **Total** | **23 / 60** | 🟡 |
 
 ---
 
