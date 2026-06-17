@@ -13,6 +13,9 @@ import {
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { UserRole } from '@nurses/shared';
 import { Roles } from '../auth/decorators/roles.decorator';
+import { CurrentUser } from '../auth/decorators/current-user.decorator';
+import { JwtUser } from '../auth/auth.types';
+import { AuditService } from '../audit/audit.service';
 import { NotFoundException } from '@nestjs/common';
 import { AddAssignmentDto, CreatePeriodDto } from './dto/roster.dto';
 import { RosterService } from './roster.service';
@@ -35,6 +38,7 @@ export class RosterController {
     private readonly generation: GenerationPublisher,
     private readonly jobs: RosterJobStore,
     private readonly analytics: AnalyticsService,
+    private readonly audit: AuditService,
   ) {}
 
   @Post('periods')
@@ -94,9 +98,19 @@ export class RosterController {
   @Post('periods/:id/generate')
   @Roles(...EDITORS)
   @HttpCode(HttpStatus.ACCEPTED)
-  async generate(@Param('id', ParseUUIDPipe) id: string) {
+  async generate(
+    @Param('id', ParseUUIDPipe) id: string,
+    @CurrentUser() user: JwtUser,
+  ) {
     await this.roster.getPeriod(id); // 404 if missing
     const jobId = await this.generation.enqueue(id);
+    await this.audit.record({
+      userId: user.sub,
+      action: 'ROSTER_GENERATE_ENQUEUED',
+      entityType: 'RosterPeriod',
+      entityId: id,
+      metadata: { jobId },
+    });
     return { jobId, status: 'PENDING' };
   }
 
@@ -110,14 +124,34 @@ export class RosterController {
   @Post('periods/:id/publish')
   @Roles(...EDITORS)
   @HttpCode(HttpStatus.OK)
-  publish(@Param('id', ParseUUIDPipe) id: string) {
-    return this.roster.publish(id);
+  async publish(
+    @Param('id', ParseUUIDPipe) id: string,
+    @CurrentUser() user: JwtUser,
+  ) {
+    const period = await this.roster.publish(id);
+    await this.audit.record({
+      userId: user.sub,
+      action: 'ROSTER_PUBLISHED',
+      entityType: 'RosterPeriod',
+      entityId: id,
+    });
+    return period;
   }
 
   @Post('periods/:id/lock')
   @Roles(UserRole.ADMIN, UserRole.NURSING_MANAGER)
   @HttpCode(HttpStatus.OK)
-  lock(@Param('id', ParseUUIDPipe) id: string) {
-    return this.roster.lock(id);
+  async lock(
+    @Param('id', ParseUUIDPipe) id: string,
+    @CurrentUser() user: JwtUser,
+  ) {
+    const period = await this.roster.lock(id);
+    await this.audit.record({
+      userId: user.sub,
+      action: 'ROSTER_LOCKED',
+      entityType: 'RosterPeriod',
+      entityId: id,
+    });
+    return period;
   }
 }

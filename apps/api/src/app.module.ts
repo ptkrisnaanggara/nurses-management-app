@@ -7,6 +7,7 @@ import { envValidationSchema } from './config/env.validation';
 import { DatabaseModule } from './database/database.module';
 import { RedisModule } from './redis/redis.module';
 import { MessagingModule } from './messaging/messaging.module';
+import { AuditModule } from './modules/audit/audit.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
 import { RolesGuard } from './modules/auth/guards/roles.guard';
@@ -19,6 +20,7 @@ import { ShiftsModule } from './modules/shifts/shifts.module';
 import { HolidaysModule } from './modules/holidays/holidays.module';
 import { RosterModule } from './modules/roster/roster.module';
 import { LeaveModule } from './modules/leave/leave.module';
+import { ReportingModule } from './modules/reporting/reporting.module';
 
 @Module({
   imports: [
@@ -40,6 +42,7 @@ import { LeaveModule } from './modules/leave/leave.module';
     DatabaseModule,
     RedisModule,
     MessagingModule,
+    AuditModule,
     AuthModule,
     HealthModule,
     FacilitiesModule,
@@ -50,6 +53,7 @@ import { LeaveModule } from './modules/leave/leave.module';
     HolidaysModule,
     RosterModule,
     LeaveModule,
+    ReportingModule,
   ],
   providers: [
     // Auth is enforced globally; routes opt out with @Public().

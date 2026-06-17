@@ -145,11 +145,11 @@
 ### EPIC 8 — Reporting & Exports
 | # | Task | Status |
 |---|---|---|
-| 8.1 | Overtime report w/ PP 35/2021 multiplier breakdown (queued generation) | ⬜ |
-| 8.2 | Holiday/rest-day duty report (holiday-rate flags) | ⬜ |
-| 8.3 | WISN/workload & staffing-gap reports | ⬜ |
-| 8.4 | Exports CSV/Excel/PDF + payroll/HRIS API | ⬜ |
-| 8.5 | Immutable audit log viewer | ⬜ |
+| 8.1 | Overtime report w/ PP 35/2021 multiplier breakdown (queued generation) | ✅ (pure PP 35/2021 math + per-nurse report; sync) |
+| 8.2 | Holiday/rest-day duty report (holiday-rate flags) | ✅ (holiday hours + pay units in overtime report) |
+| 8.3 | WISN/workload & staffing-gap reports | ⬜ (Douglas done in Epic 2; WISN/Gillies pending) |
+| 8.4 | Exports CSV/Excel/PDF + payroll/HRIS API | 🟡 (roster CSV export; Excel/PDF pending) |
+| 8.5 | Immutable audit log + viewer | ✅ (AuditService + log; recorded on publish/lock/generate; GET /audit) |
 
 ### EPIC 9 — Non-Functional & Hardening
 | # | Task | Status |
@@ -185,9 +185,9 @@
 | 5 — Roster Generation | 5 / 8 | 🟡 |
 | 6 — Self-Service | 3 / 5 | 🟡 |
 | 7 — Compliance & Fairness | 4 / 4 | ✅ |
-| 8 — Reporting | 0 / 5 | ⬜ |
+| 8 — Reporting | 3 / 5 | 🟡 |
 | 9 — Non-Functional | 0 / 6 | ⬜ |
-| **Total** | **35 / 60** | 🟡 |
+| **Total** | **38 / 60** | 🟡 |
 
 ---
 
