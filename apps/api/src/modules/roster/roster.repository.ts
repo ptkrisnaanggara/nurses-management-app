@@ -12,6 +12,11 @@ export interface RosterRepository {
 
   addAssignment(data: Partial<Assignment>): Promise<Assignment>;
   removeAssignment(id: string): Promise<boolean>;
+  findAssignmentById(id: string): Promise<Assignment | null>;
+  updateAssignment(
+    id: string,
+    data: Partial<Assignment>,
+  ): Promise<Assignment | null>;
   findAssignmentsByPeriod(rosterPeriodId: string): Promise<Assignment[]>;
   findAssignmentsByNurse(
     rosterPeriodId: string,

@@ -128,10 +128,10 @@
 ### EPIC 6 — Self-Service (Leave, Swap, Schedule View)
 | # | Task | Status |
 |---|---|---|
-| 6.1 | Leave/izin request + approval workflow (balance & rule checks) | ⬜ |
-| 6.2 | **Tukar shift** (swap) request — validate both nurses pass HARD rules | ⬜ |
-| 6.3 | Women's protections: menstrual/maternity/miscarriage/lactation leave types | ⬜ |
-| 6.4 | Personal & ward schedule views (calendar + list), mobile-first | ⬜ |
+| 6.1 | Leave/izin request + approval workflow (API: create/approve/reject/cancel) | ✅ (backend/API; UI pending) |
+| 6.2 | **Tukar shift** (swap) request — re-validates BOTH nurses via the rule engine on approve | ✅ (backend/API; UI pending) |
+| 6.3 | Women's protections: menstrual (2-day cap)/maternity/miscarriage/lactation leave types | ✅ |
+| 6.4 | Personal & ward schedule views (ward grid done; personal view + leave/swap UI) | 🟡 |
 | 6.5 | Notifications (push/WhatsApp/email) via queue — channel configurable | ⬜ |
 
 ### EPIC 7 — Compliance & Fairness
@@ -183,11 +183,11 @@
 | 3 — Nurses & Credentials | 4 / 6 | 🟡 |
 | 4 — Rule Engine ⭐ | 4 / 7 | 🟡 |
 | 5 — Roster Generation | 5 / 8 | 🟡 |
-| 6 — Self-Service | 0 / 5 | ⬜ |
+| 6 — Self-Service | 3 / 5 | 🟡 |
 | 7 — Compliance & Fairness | 0 / 4 | ⬜ |
 | 8 — Reporting | 0 / 5 | ⬜ |
 | 9 — Non-Functional | 0 / 6 | ⬜ |
-| **Total** | **28 / 60** | 🟡 |
+| **Total** | **31 / 60** | 🟡 |
 
 ---
 

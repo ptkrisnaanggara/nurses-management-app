@@ -48,6 +48,20 @@ export class RosterTypeOrmRepository implements RosterRepository {
     return (result.affected ?? 0) > 0;
   }
 
+  findAssignmentById(id: string): Promise<Assignment | null> {
+    return this.assignments.findOne({ where: { id } });
+  }
+
+  async updateAssignment(
+    id: string,
+    data: Partial<Assignment>,
+  ): Promise<Assignment | null> {
+    const existing = await this.assignments.findOne({ where: { id } });
+    if (!existing) return null;
+    Object.assign(existing, data);
+    return this.assignments.save(existing);
+  }
+
   findAssignmentsByPeriod(rosterPeriodId: string): Promise<Assignment[]> {
     return this.assignments.find({
       where: { rosterPeriodId },

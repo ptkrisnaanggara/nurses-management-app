@@ -18,6 +18,7 @@ import { WardsModule } from './modules/wards/wards.module';
 import { ShiftsModule } from './modules/shifts/shifts.module';
 import { HolidaysModule } from './modules/holidays/holidays.module';
 import { RosterModule } from './modules/roster/roster.module';
+import { LeaveModule } from './modules/leave/leave.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { RosterModule } from './modules/roster/roster.module';
     ShiftsModule,
     HolidaysModule,
     RosterModule,
+    LeaveModule,
   ],
   providers: [
     // Auth is enforced globally; routes opt out with @Public().
